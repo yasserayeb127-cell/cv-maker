@@ -439,6 +439,17 @@ placeholder="رابط GitHub"
 <span id="resultCity"></span>
 
 </div>
+<div class="links">
+
+<span id="resultLinkedin"></span>
+
+<span id="resultGithub"></span>
+
+</div>
+
+<button onclick="downloadPDF()" class="pdf-button">
+    📄 تحميل CV بصيغة PDF
+</button>
 
 </div>
 
@@ -648,7 +659,38 @@ function createCV() {
 }
 
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
+<script>
+function downloadPDF() {
+    const cv = document.getElementById("cv");
+    const name = document.getElementById("name").value || "CV";
+
+    const options = {
+        margin: 10,
+        filename: name + "-CV.pdf",
+        image: {
+            type: "jpeg",
+            quality: 0.98
+        },
+        html2canvas: {
+            scale: 2,
+            useCORS: true
+        },
+        jsPDF: {
+            unit: "mm",
+            format: "a4",
+            orientation: "portrait"
+        }
+    };
+
+    html2pdf()
+        .set(options)
+        .from(cv)
+        .save();
+}
+</script>
 </body>
+
 </html>
 
