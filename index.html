@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Maker</title>
+</head>
+
+<body>
+
+    <h1>إنشاء سيرتك الذاتية</h1>
+
+    <input id="name" placeholder="الاسم الكامل">
+
+    <br><br>
+
+    <input id="job" placeholder="المهنة">
+
+    <br><br>
+
+    <input id="email" placeholder="البريد الإلكتروني">
+
+    <br><br>
+
+    <textarea id="about" placeholder="نبذة عنك"></textarea>
+
+    <br><br>
+
+    <button onclick="createCV()">إنشاء CV</button>
+
+    <hr>
+
+    <h2 id="resultName"></h2>
+    <h3 id="resultJob"></h3>
+    <p id="resultEmail"></p>
+    <p id="resultAbout"></p>
+
+    <script>
+
+        function createCV() {
+
+            document.getElementById("resultName").innerText =
+                document.getElementById("name").value;
+
+            document.getElementById("resultJob").innerText =
+                document.getElementById("job").value;
+
+            document.getElementById("resultEmail").innerText =
+                document.getElementById("email").value;
+
+            document.getElementById("resultAbout").innerText =
+                document.getElementById("about").value;
+        }
+
+    </script>
+
+</body>
+
+</html>
