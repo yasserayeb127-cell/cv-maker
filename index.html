@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,40 +8,39 @@
 <title>CV Maker - إنشاء سيرتك الذاتية</title>
 
 <style>
+
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
-    background: #f3f6fb;
+    background: #eef2f7;
     color: #1e293b;
-    min-height: 100vh;
 }
 
 header {
     background: linear-gradient(135deg, #2563eb, #4f46e5);
     color: white;
-    padding: 35px 20px;
     text-align: center;
+    padding: 35px 20px;
 }
 
 header h1 {
+    margin: 0 0 10px;
     font-size: 32px;
-    margin-bottom: 10px;
 }
 
 header p {
-    font-size: 16px;
-    opacity: 0.9;
+    margin: 0;
+    font-size: 17px;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 950px;
     margin: 30px auto;
-    padding: 0 15px;
+    padding: 15px;
 }
 
 .card {
@@ -52,173 +52,603 @@ header p {
 }
 
 .card h2 {
-    margin-bottom: 20px;
     color: #2563eb;
+    margin-top: 0;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 12px;
 }
 
 label {
     display: block;
-    margin-bottom: 7px;
     font-weight: bold;
+    margin: 15px 0 7px;
 }
 
 input,
 textarea {
     width: 100%;
-    padding: 14px;
-    margin-bottom: 18px;
+    padding: 13px;
     border: 1px solid #d1d5db;
     border-radius: 10px;
     font-size: 16px;
-    outline: none;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
 }
 
 input:focus,
 textarea:focus {
+    outline: none;
     border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
 }
 
-textarea {
-    min-height: 120px;
-    resize: vertical;
+.photo-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.photo-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: none;
+    margin: 15px auto;
+    border: 4px solid #2563eb;
 }
 
 button {
     width: 100%;
     padding: 15px;
-    border: none;
+    border: 0;
     border-radius: 10px;
     background: #2563eb;
     color: white;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 button:hover {
     background: #1d4ed8;
 }
 
-#cv {
+.cv {
     display: none;
 }
 
-.cv-header {
-    text-align: center;
-    border-bottom: 2px solid #2563eb;
+.cv-top {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    border-bottom: 3px solid #2563eb;
     padding-bottom: 20px;
-    margin-bottom: 20px;
 }
 
-.cv-header h2 {
+.cv-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: none;
+}
+
+.cv-name {
+    flex: 1;
+}
+
+.cv-name h1 {
+    margin: 0 0 8px;
     font-size: 30px;
-    color: #111827;
-    margin-bottom: 8px;
 }
 
-.cv-header h3 {
+.cv-name h3 {
     color: #2563eb;
-    margin-bottom: 10px;
+    margin: 0 0 10px;
+}
+
+.contact {
+    color: #64748b;
+    line-height: 1.8;
 }
 
 .cv-section {
-    margin-bottom: 20px;
+    margin-top: 25px;
 }
 
-.cv-section h3 {
+.cv-section h2 {
     color: #2563eb;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #ddd;
     padding-bottom: 8px;
-    margin-bottom: 10px;
+}
+
+.cv-section p {
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+.links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.links span {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill {
+    background: #2563eb;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 20px;
 }
 
 footer {
     text-align: center;
-    padding: 25px;
     color: #64748b;
+    padding: 25px;
 }
 
-@media (max-width: 600px) {
+@media(max-width:600px) {
+
     header h1 {
         font-size: 26px;
     }
 
     .card {
-        padding: 20px;
+        padding: 18px;
+    }
+
+    .cv-top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cv-name h1 {
+        font-size: 25px;
     }
 }
+
 </style>
 </head>
+
 
 <body>
 
 <header>
-    <h1>✨ CV Maker</h1>
-    <p>أنشئ سيرتك الذاتية الاحترافية في دقائق</p>
+
+<h1>✨ CV Maker</h1>
+
+<p>أنشئ سيرتك الذاتية الاحترافية بسهولة</p>
+
 </header>
+
 
 <div class="container">
 
-    <div class="card">
-        <h2>📝 معلوماتك الشخصية</h2>
 
-        <label>الاسم الكامل</label>
-        <input id="name" placeholder="مثال: محمد أحمد">
+<!-- FORM -->
 
-        <label>المهنة</label>
-        <input id="job" placeholder="مثال: مطور مواقع">
+<div class="card">
 
-        <label>البريد الإلكتروني</label>
-        <input id="email" type="email" placeholder="example@email.com">
+<h2>👤 المعلومات الشخصية</h2>
 
-        <label>نبذة عنك</label>
-        <textarea id="about" placeholder="اكتب نبذة قصيرة عن خبرتك ومهاراتك..."></textarea>
+<div class="photo-box">
 
-        <button onclick="createCV()">إنشاء سيرتي الذاتية 🚀</button>
-    </div>
+<label>الصورة الشخصية</label>
 
-    <div class="card" id="cv">
+<input
+type="file"
+id="photo"
+accept="image/*"
+onchange="previewPhoto(event)"
+>
 
-        <div class="cv-header">
-            <h2 id="resultName"></h2>
-            <h3 id="resultJob"></h3>
-            <p id="resultEmail"></p>
-        </div>
-
-        <div class="cv-section">
-            <h3>نبذة عني</h3>
-            <p id="resultAbout"></p>
-        </div>
-
-    </div>
+<img id="photoPreview" class="photo-preview">
 
 </div>
 
+
+<label>الاسم الكامل</label>
+
+<input
+id="name"
+placeholder="مثال: محمد أحمد"
+>
+
+
+<label>المهنة</label>
+
+<input
+id="job"
+placeholder="مثال: مطور مواقع"
+>
+
+
+<label>البريد الإلكتروني</label>
+
+<input
+id="email"
+type="email"
+placeholder="example@email.com"
+>
+
+
+<label>رقم الهاتف</label>
+
+<input
+id="phone"
+placeholder="+216 XX XXX XXX"
+>
+
+
+<label>المدينة</label>
+
+<input
+id="city"
+placeholder="مثال: تونس"
+>
+
+
+<label>نبذة عنك</label>
+
+<textarea
+id="about"
+placeholder="اكتب نبذة مختصرة عن نفسك وخبرتك..."
+></textarea>
+
+</div>
+
+
+<!-- EXPERIENCE -->
+
+<div class="card">
+
+<h2>💼 الخبرة المهنية</h2>
+
+<label>الوظيفة والشركة</label>
+
+<input
+id="experience"
+placeholder="مثال: مطور مواقع - شركة ABC"
+>
+
+<label>تفاصيل الخبرة</label>
+
+<textarea
+id="experienceDetails"
+placeholder="اكتب مسؤولياتك وإنجازاتك..."
+></textarea>
+
+</div>
+
+
+<!-- EDUCATION -->
+
+<div class="card">
+
+<h2>🎓 التعليم</h2>
+
+<label>الشهادة والمؤسسة</label>
+
+<input
+id="education"
+placeholder="مثال: إجازة في علوم الحاسوب - جامعة تونس"
+>
+
+<label>تفاصيل التعليم</label>
+
+<textarea
+id="educationDetails"
+placeholder="مثال: تخصص تطوير البرمجيات..."
+></textarea>
+
+</div>
+
+
+<!-- SKILLS -->
+
+<div class="card">
+
+<h2>🛠️ المهارات</h2>
+
+<label>اكتب مهاراتك مفصولة بفاصلة</label>
+
+<input
+id="skills"
+placeholder="HTML, CSS, JavaScript, Python"
+>
+
+</div>
+
+
+<!-- LANGUAGES -->
+
+<div class="card">
+
+<h2>🌐 اللغات</h2>
+
+<label>اكتب اللغات ومستواك</label>
+
+<input
+id="languages"
+placeholder="العربية: ممتاز، الفرنسية: جيد، الإنجليزية: جيد"
+>
+
+</div>
+
+
+<!-- LINKS -->
+
+<div class="card">
+
+<h2>🔗 الروابط</h2>
+
+<label>LinkedIn</label>
+
+<input
+id="linkedin"
+placeholder="رابط LinkedIn"
+>
+
+<label>GitHub</label>
+
+<input
+id="github"
+placeholder="رابط GitHub"
+>
+
+<button onclick="createCV()">
+🚀 إنشاء سيرتي الذاتية
+</button>
+
+</div>
+
+
+<!-- CV RESULT -->
+
+<div class="card cv" id="cv">
+
+<div class="cv-top">
+
+<img id="cvPhoto" class="cv-photo">
+
+<div class="cv-name">
+
+<h1 id="resultName"></h1>
+
+<h3 id="resultJob"></h3>
+
+<div class="contact">
+
+<span id="resultEmail"></span><br>
+<span id="resultPhone"></span><br>
+<span id="resultCity"></span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="cv-section">
+
+<h2>🎯 نبذة عني</h2>
+
+<p id="resultAbout"></p>
+
+</div>
+
+
+<div class="cv-section">
+
+<h2>💼 الخبرة المهنية</h2>
+
+<h3 id="resultExperience"></h3>
+
+<p id="resultExperienceDetails"></p>
+
+</div>
+
+
+<div class="cv-section">
+
+<h2>🎓 التعليم</h2>
+
+<h3 id="resultEducation"></h3>
+
+<p id="resultEducationDetails"></p>
+
+</div>
+
+
+<div class="cv-section">
+
+<h2>🛠️ المهارات</h2>
+
+<div id="resultSkills" class="skills"></div>
+
+</div>
+
+
+<div class="cv-section">
+
+<h2>🌐 اللغات</h2>
+
+<p id="resultLanguages"></p>
+
+</div>
+
+
+<div class="cv-section">
+
+<h2>🔗 الروابط</h2>
+
+<div class="links">
+
+<span id="resultLinkedin"></span>
+
+<span id="resultGithub"></span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
 <footer>
-    © 2026 CV Maker — أنشئ مستقبلك المهني
+
+© 2026 CV Maker — اصنع مستقبلك المهني
+
 </footer>
 
+
 <script>
+
+function previewPhoto(event) {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        const preview =
+        document.getElementById("photoPreview");
+
+        preview.src = e.target.result;
+
+        preview.style.display = "block";
+    };
+
+    reader.readAsDataURL(file);
+}
+
+
 function createCV() {
 
-    const name = document.getElementById("name").value;
-    const job = document.getElementById("job").value;
-    const email = document.getElementById("email").value;
-    const about = document.getElementById("about").value;
+    document.getElementById("resultName").innerText =
+    document.getElementById("name").value;
 
-    document.getElementById("resultName").innerText = name;
-    document.getElementById("resultJob").innerText = job;
-    document.getElementById("resultEmail").innerText = email;
-    document.getElementById("resultAbout").innerText = about;
+    document.getElementById("resultJob").innerText =
+    document.getElementById("job").value;
+
+    document.getElementById("resultEmail").innerText =
+    document.getElementById("email").value;
+
+    document.getElementById("resultPhone").innerText =
+    document.getElementById("phone").value;
+
+    document.getElementById("resultCity").innerText =
+    document.getElementById("city").value;
+
+    document.getElementById("resultAbout").innerText =
+    document.getElementById("about").value;
+
+    document.getElementById("resultExperience").innerText =
+    document.getElementById("experience").value;
+
+    document.getElementById("resultExperienceDetails").innerText =
+    document.getElementById("experienceDetails").value;
+
+    document.getElementById("resultEducation").innerText =
+    document.getElementById("education").value;
+
+    document.getElementById("resultEducationDetails").innerText =
+    document.getElementById("educationDetails").value;
+
+    document.getElementById("resultLanguages").innerText =
+    document.getElementById("languages").value;
+
+    document.getElementById("resultLinkedin").innerText =
+    document.getElementById("linkedin").value;
+
+    document.getElementById("resultGithub").innerText =
+    document.getElementById("github").value;
+
+
+    // Skills
+
+    const skills =
+    document.getElementById("skills").value
+    .split(",");
+
+    const skillsBox =
+    document.getElementById("resultSkills");
+
+    skillsBox.innerHTML = "";
+
+    skills.forEach(function(skill) {
+
+        if (skill.trim() !== "") {
+
+            const span =
+            document.createElement("span");
+
+            span.className = "skill";
+
+            span.innerText = skill.trim();
+
+            skillsBox.appendChild(span);
+        }
+
+    });
+
+
+    // Photo
+
+    const photo =
+    document.getElementById("photo");
+
+    if (photo.files.length > 0) {
+
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+
+            const cvPhoto =
+            document.getElementById("cvPhoto");
+
+            cvPhoto.src = e.target.result;
+
+            cvPhoto.style.display = "block";
+        };
+
+        reader.readAsDataURL(photo.files[0]);
+    }
+
+
+    // Show CV
 
     document.getElementById("cv").style.display = "block";
 
     document.getElementById("cv").scrollIntoView({
         behavior: "smooth"
     });
+
 }
+
 </script>
 
 </body>
 </html>
+
